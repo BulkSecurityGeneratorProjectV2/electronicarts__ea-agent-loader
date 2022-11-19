@@ -35,6 +35,7 @@ import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -283,7 +284,7 @@ public class AgentLoader
             final boolean canRetransformClasses,
             final boolean canSetNativeMethodPrefix) throws IOException
     {
-        final File jarFile = File.createTempFile("javaagent." + agentClass, ".jar");
+        final File jarFile = Files.createTempFile("javaagent." + agentClass, ".jar").toFile();
         jarFile.deleteOnExit();
         createAgentJar(new FileOutputStream(jarFile),
                 agentClass,
